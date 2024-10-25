@@ -6,6 +6,6 @@
 
 My solutions to Advent of code 2023.
 
-Done in variouw languages, for fun.
+Done in various languages, for fun.
 
 AOC: [Advent of Code](https://adventofcode.com/)
