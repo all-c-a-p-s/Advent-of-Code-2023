@@ -5,4 +5,6 @@
 
 My solutions to Advent of code 2023, written in Go.
 
+I am also slowly working on some solutions in Ocaml (found in the aoc directory)
+
 AOC: [Advent of Code](https://adventofcode.com/)
