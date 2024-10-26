@@ -12,8 +12,9 @@ let read_lines filename =
 let is_digit a = match a with '0' .. '9' -> true | _ -> false
 
 let char_to_digit c =
-  if c >= '0' && c <= '9' then int_of_char c - int_of_char '0'
-  else failwith "tried to convert non-digit to int"
+  match c with
+  | '0' .. '9' -> int_of_char c - int_of_char '0'
+  | _ -> failwith "tried to convert non-digit to int"
 
 let rec last_number reversed_line =
   if is_digit reversed_line.[0] then char_to_digit reversed_line.[0]
@@ -57,8 +58,8 @@ let line_score line =
   ((List.nth digits 0 |> char_to_digit) * 10)
   + (List.nth (List.rev digits) 0 |> char_to_digit)
 
-let rec total_score lines =
-  match lines with [] -> 0 | x :: xs -> line_score x + total_score xs
+let rec total_score f lines =
+  match lines with [] -> 0 | x :: xs -> f x + total_score f xs
 
 let rev x =
   let len = String.length x in
@@ -68,13 +69,8 @@ let line_score_part_two line = (first_number line * 10) + last_number (rev line)
 
 let part_one filename =
   let lines = read_lines filename in
-  total_score lines
-
-let rec total_part_two lines =
-  match lines with
-  | [] -> 0
-  | x :: xs -> line_score_part_two x + total_part_two xs
+  total_score line_score lines
 
 let part_two filename =
   let lines = read_lines filename in
-  total_part_two lines
+  total_score line_score_part_two lines
