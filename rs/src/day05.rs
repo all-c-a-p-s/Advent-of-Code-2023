@@ -1,6 +1,5 @@
 use std::cmp::{max, min};
 
-// Structs for Range and Map
 #[derive(Clone, Copy, PartialEq)]
 struct Range {
     min: i128,
